@@ -1,0 +1,54 @@
+{% extends 'navigationbar.html' %}
+
+{% block body %}
+
+
+<div class="container" style="margin-top:50px">
+   <h2 class="text-center">Add Patient</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Registration Date</label>
+        <input type = "date" class="form-control" name ="rdate" required>
+        <label>Patient Name</label>
+        <input type = "text" class="form-control" name ="pname" required>
+        <label>Gender</label><br>
+        <input type = "radio" name ="gender" value="Male"> Male
+        <input type = "radio" name ="gender" value="Male"> Female<br>
+        <label>DOB</label>
+        <input type = "date" class="form-control" name ="p_dob" required>
+        <label>Email</label>
+        <input type = "text" class="form-control" name ="p_email" required>
+        <label>Address</label>
+        <textarea class="form-control" name ="address" required></textarea>
+        <label>Mobile</label>
+        <input type = "text" class="form-control" name ="mobile" required>
+        <label>Aadhar No.</label>
+        <input type = "text" class="form-control" name ="d_aadhar" required>
+        <label>State</label>
+        <input type = "text" class="form-control" name ="state" required>
+        <label>City</label>
+        <input type = "text" class="form-control" name ="city" required>
+        <label>Blood Group</label>
+        <input type = "text" class="form-control" name ="blood" required>
+        <label>Disease</label>
+        <input type = "text" class="form-control" name ="disease" required>
+        <br>
+        <input type = "submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+
+ {% if error == "no" %}
+<script>
+    alert('Record Saved Successfully');
+    window.location=('{% url 'view_patient' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went Wrong, Try Again');
+</script>
+{% endif %}
+
+
+{% endblock %}

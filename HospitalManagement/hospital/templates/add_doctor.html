@@ -1,0 +1,43 @@
+{% extends 'navigationbar.html' %}
+
+{% block body %}
+{% load static %}
+
+<div class="container" style="margin-top:50px">
+   <h2 class="text-center">Add Doctor</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Doctor Name</label>
+        <input type = "text" class="form-control" name ="name" required>
+        <label>DOB</label>
+        <input type = "date" class="form-control" name ="d_dob" required>
+        <label>Email</label>
+        <input type = "text" class="form-control" name ="d_email" required>
+        <label>Mobile</label>
+        <input type = "text" class="form-control" name ="mobile" required>
+        <label>Aadhar No.</label>
+        <input type = "text" class="form-control" name ="d_aadhar" required>
+        <label>Specialization</label>
+        <input type = "text" class="form-control" name ="specialization" required>
+        <label>Qualification</label>
+        <input type = "text" class="form-control" name ="qualification" required>
+        <br>
+        <input type = "submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+
+ {% if error == "no" %}
+<script>
+    alert('Record Saved Successfully');
+    window.location=('{% url 'view_doctor' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went Wrong, Try Again');
+</script>
+{% endif %}
+
+
+{% endblock %}

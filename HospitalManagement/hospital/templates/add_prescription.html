@@ -1,0 +1,43 @@
+{% extends 'navigationbar.html' %}
+
+{% block body %}
+
+
+<div class="container" style="margin-top:50px">
+   <h2 class="text-center">Add Prescription</h2>
+    <br><br>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label>Patient Name</label>
+        <select name="patient" class="form-control">
+            {% for i in patient %}
+            <option value="{{i.name}}">
+            {{i.name}} [{{i.id}}]
+            </option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Medicine</label>
+        <input type = "text" class="form-control" name ="med" required>
+        <label>Do's and Don't</label>
+        <input type = "text" class="form-control" name ="dnd" required>
+        <br>
+        <input type = "submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+
+ {% if error == "no" %}
+<script>
+    alert('Record Saved Successfully');
+    window.location=('{% url 'view_prescription' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went Wrong, Try Again');
+</script>
+{% endif %}
+
+
+{% endblock %}

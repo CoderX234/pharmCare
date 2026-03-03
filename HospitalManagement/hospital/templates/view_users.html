@@ -1,0 +1,21 @@
+{% extends 'navigationbar.html' %}
+{% block body %}
+<div class="container">
+  <h2>Users</h2>
+  <table class="table">
+    <thead><tr><th>Username</th><th>Email</th><th>Role</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.profile.role }}</td>
+        <td>
+          <a class="btn btn-sm btn-secondary" href="{% url 'edit_user' u.id %}">Edit Role</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

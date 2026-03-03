@@ -1,0 +1,19 @@
+{% extends 'navigationbar.html' %}
+{% block body %}
+<div class="container">
+  <h2>Edit Role for {{ user.username }}</h2>
+  {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Role</label>
+      <select class="form-control" name="role">
+        {% for val, label in roles %}
+          <option value="{{ val }}" {% if user.profile.role == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

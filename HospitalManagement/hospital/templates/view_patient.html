@@ -1,0 +1,56 @@
+{% extends 'navigationbar.html' %}
+
+{% block body %}
+{% load static %}
+
+
+<div class="container" style="margin-top:50px">
+<h2 class="text-center">View Patient</h2>
+<br><br>
+<table class="table table-hover" id="example">
+    <thead>
+    <tr>
+        <th>Patient ID</th>
+        <th>Registration Date</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Aadhar No.</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Blood Group</th>
+        <th>Disease</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for i in pat %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.registrationDate}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.p_dob}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.p_email}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.p_aadhar}}</td>
+        <td>{{i.state}}</td>
+        <td>{{i.city}}</td>
+        <td>{{i.bloodgroup}}</td>
+        <td>{{i.disease}}</td>
+        <td>{% if user_role == 'admin' %}<a href="{% url 'delete_patient' i.id %}" onclick="return confirm('Do you really want to delete')" class="btn btn-danger">Delete</a>{% else %}-{% endif %}</td>
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}
